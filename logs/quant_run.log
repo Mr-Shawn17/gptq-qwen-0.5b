@@ -1,0 +1,52 @@
+
+WARN  Python GIL is enabled: Multi-gpu quant acceleration for MoE models is sub-optimal and multi-core accelerated cpu packing is also disabled. We recommend Python >= 3.13.3t with Pytorch > 2.8 for mult-gpu quantization and multi-cpu packing with env `PYTHON_GIL=0`.
+W1020 23:19:39.851000 8652 site-packages/torch/utils/_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W1020 23:19:39.907000 8652 site-packages/torch/utils/_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+INFO  ENV: Auto setting PYTORCH_ALLOC_CONF='expandable_segments:True,max_split_size_mb:256,garbage_collection_threshold:0.7' for memory saving.
+INFO  ENV: Auto setting CUDA_DEVICE_ORDER=PCI_BUS_ID for correctness.           
+INFO  
+
+┌─────────────┐    ┌────────────────────────┐    ┌────────────┐    ┌─────────┐
+│ GPT-QModel  │ -> │ ▓▓▓▓▓▓▓▓▓▓▓▓ 16bit     │ -> │ ▒▒▒▒ 8bit  │ -> │ ░░ 4bit │
+└─────────────┘    └────────────────────────┘    └────────────┘    └─────────┘
+GPT-QModel   : 7.6.0
+Transformers : 5.20.2
+Torch        : 2.14.1+cu130
+Triton       : 3.8.0
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+WARNING:huggingface_hub.utils._http:'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+Retrying in 1s [Retry 1/5].
+WARNING:huggingface_hub.utils._http:Retrying in 1s [Retry 1/5].
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+WARNING:huggingface_hub.utils._http:'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+Retrying in 2s [Retry 2/5].
+WARNING:huggingface_hub.utils._http:Retrying in 2s [Retry 2/5].
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+WARNING:huggingface_hub.utils._http:'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+Retrying in 4s [Retry 3/5].
+WARNING:huggingface_hub.utils._http:Retrying in 4s [Retry 3/5].
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+WARNING:huggingface_hub.utils._http:'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+Retrying in 8s [Retry 4/5].
+WARNING:huggingface_hub.utils._http:Retrying in 8s [Retry 4/5].
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+WARNING:huggingface_hub.utils._http:'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+Retrying in 8s [Retry 5/5].
+WARNING:huggingface_hub.utils._http:Retrying in 8s [Retry 5/5].
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+WARNING:huggingface_hub.utils._http:'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/README.md
+Traceback (most recent call last):
+  File "/home/hik/quant_gptq/quant_gptq.py", line 19, in <module>
+    ds = load_dataset("wikimedia/wikipedia", "20231101.zh", split="train", streaming=True)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hik/miniconda3/envs/gptq/lib/python3.12/site-packages/datasets/load.py", line 1667, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hik/miniconda3/envs/gptq/lib/python3.12/site-packages/datasets/load.py", line 1290, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hik/miniconda3/envs/gptq/lib/python3.12/site-packages/datasets/load.py", line 1182, in dataset_module_factory
+    raise e1 from None
+  File "/home/hik/miniconda3/envs/gptq/lib/python3.12/site-packages/datasets/load.py", line 1115, in dataset_module_factory
+    raise ConnectionError(f"Couldn't reach '{path}' on the Hub ({e.__class__.__name__})") from e
+ConnectionError: Couldn't reach 'wikimedia/wikipedia' on the Hub (LocalEntryNotFoundError)

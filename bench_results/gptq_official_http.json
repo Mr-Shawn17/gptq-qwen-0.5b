@@ -1,0 +1,50 @@
+{
+  "label": "gptq_official_http",
+  "model": "qwen2-gptq-official",
+  "max_tokens": 128,
+  "runs": 5,
+  "prompt": "请用两百字介绍一下人工智能的发展历史，要求逻辑清晰、分阶段说明。",
+  "ttft_ms_median": 69.6,
+  "total_s_median": 2.567,
+  "decode_tps_median": 50.83,
+  "completion_tokens_median": 128,
+  "gpu_peak_mib": 2309,
+  "samples": [
+    {
+      "ttft_ms": 66.91010200302117,
+      "total_s": 2.570448796999699,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 50.72819535556191
+    },
+    {
+      "ttft_ms": 68.11440200544894,
+      "total_s": 2.566523899004096,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 50.83233959547695
+    },
+    {
+      "ttft_ms": 71.63459999719635,
+      "total_s": 2.560129582998343,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 51.034862785552775
+    },
+    {
+      "ttft_ms": 85.39339900016785,
+      "total_s": 2.605973582001752,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 50.38522513843003
+    },
+    {
+      "ttft_ms": 69.58529999974417,
+      "total_s": 2.546849377999024,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 51.26623403935578
+    }
+  ],
+  "sample_output": "人工智能（AI）的发展史可以追溯到20世纪50年代的计算机科学家们开始研究如何利用机器学习和数据挖掘技术来模拟人类智能的能力。随着计算机科学的进步，AI技术在许多领域取得了突破性的进展，包括语音识别、图像处理、自然语言理解等。\n\n1960年，美国斯坦福大学的乔纳森·戈德曼和罗伯特·库恩等人开发了第一个深度学习模型，该模型能够模仿人类大脑的神经网络结构，并且能够从大量数据中提取出有意义的信息。随后，"
+}

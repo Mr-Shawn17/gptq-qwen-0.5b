@@ -1,0 +1,50 @@
+{
+  "label": "fp16_ref_http",
+  "model": "Qwen2-0.5B-Instruct",
+  "max_tokens": 128,
+  "runs": 5,
+  "prompt": "请用两百字介绍一下人工智能的发展历史，要求逻辑清晰、分阶段说明。",
+  "ttft_ms_median": 189.7,
+  "total_s_median": 4.886,
+  "decode_tps_median": 27.04,
+  "completion_tokens_median": 128,
+  "gpu_peak_mib": 1997,
+  "samples": [
+    {
+      "ttft_ms": 185.45237500075018,
+      "total_s": 4.88790818900452,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 27.007164984261603
+    },
+    {
+      "ttft_ms": 188.90464800642803,
+      "total_s": 4.884506881004199,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 27.046583952005776
+    },
+    {
+      "ttft_ms": 189.72509099694435,
+      "total_s": 4.8864209550010855,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 27.0402861239831
+    },
+    {
+      "ttft_ms": 199.47849000163842,
+      "total_s": 4.905605635001848,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 26.986096228812013
+    },
+    {
+      "ttft_ms": 194.6405330018024,
+      "total_s": 4.880241512000794,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 27.104313954435714
+    }
+  ],
+  "sample_output": "人工智能（AI）的发展可以追溯到20世纪50年代末期，当时计算机科学家们开始研究如何让机器模拟人类智能行为。1960年，美国麻省理工学院的约翰·麦卡锡教授提出了“知识自动机”概念，这是第一个真正意义上的AI系统。随后，随着计算能力的提高和硬件技术的进步，AI逐渐从理论研究走向实际应用。\n\n在20世纪70年代，随着电子计算机的快速发展，AI的研究进入了一个新的发展阶段。这一时期，出现了许多著名的AI"
+}

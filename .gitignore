@@ -1,0 +1,31 @@
+# ---- Python 运行产物 ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ---- 量化/推理运行产物（防误提交大文件）----
+out-gptq/
+*-GPTQ-Int4*/
+models/
+*.safetensors
+*.bin
+*.ckpt
+*.engine
+.cache/
+
+# ---- 运行时杂物 ----
+nohup.out
+*.log.tmp
+
+# ---- 编辑器 / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- 操作系统 ----
+.DS_Store
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,50 @@
+{
+  "label": "gptq_local_http",
+  "model": "qwen2-gptq-local",
+  "max_tokens": 128,
+  "runs": 5,
+  "prompt": "请用两百字介绍一下人工智能的发展历史，要求逻辑清晰、分阶段说明。",
+  "ttft_ms_median": 59.9,
+  "total_s_median": 2.17,
+  "decode_tps_median": 60.18,
+  "completion_tokens_median": 128,
+  "gpu_peak_mib": 2320,
+  "samples": [
+    {
+      "ttft_ms": 65.03007400169736,
+      "total_s": 2.1698048370017204,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 60.33899789779958
+    },
+    {
+      "ttft_ms": 58.444276997761335,
+      "total_s": 2.1616482399986126,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 60.38406271296504
+    },
+    {
+      "ttft_ms": 59.895275997405406,
+      "total_s": 2.223673715998302,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 58.693624842637476
+    },
+    {
+      "ttft_ms": 60.6459749978967,
+      "total_s": 2.1708742089977022,
+      "completion_tokens": 128,
+      "prompt_tokens": 37,
+      "decode_tps": 60.18306359178953
+    },
+    {
+      "ttft_ms": 57.920626997656655,
+      "total_s": 1.7794455900002504,
+      "completion_tokens": 103,
+      "prompt_tokens": 37,
+      "decode_tps": 59.24979433472573
+    }
+  ],
+  "sample_output": "人工智能（AI）的发展历史可以追溯到20世纪50年代的计算机科学家们开始研究如何利用计算机来解决实际问题。\n\n1970年，美国的阿帕奇公司开发出了世界上第一台可编程的微处理器，这就是所谓的“阿帕奇”微处理器。\n\n阿帕奇微处理器的出现标志着计算机科学进入了新的发展阶段。它不仅为人类提供了前所未有的计算能力，而且也为人类带来了前所未有的技术进步。\n\n阿帕奇微处理器的出现标志着计算机科学进入了新的发展阶"
+}
