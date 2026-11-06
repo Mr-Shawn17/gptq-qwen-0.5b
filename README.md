@@ -134,7 +134,7 @@ bash scripts/eval5.sh qwen2-gptq my_eval .
 Qwen2-0.5B 的 `tie_word_embeddings=true`——embedding 矩阵（151936 词表 × 896 维）与 lm_head 共享同一份权重，这样 0.5B 的小模型能省 272MB 参数（占总参数 34%）。
 
 - **自产产物（gptqmodel 导出）**：忠实于绑定关系，safetensors 只存 `model.embed_tokens.weight` 一份（459MB）
-- **官方产物（AutoGPTQ 一脉工具链）**：量化流水线不特判 tie 关系，导出时把 lm_head 也序列化了一份——实测该拷贝与 embed_tokens **逐元素完全相同**（`torch.equal` 为 True），纯粹是磁盘冗余
+- **官方产物（AutoGPTQ 一脉工具链）**：量化流水线不特判 tie 关系，导出时把 lm_head 也序列化了一份——实测该拷贝与 embed_tokens **逐元素完全相同**（`torch.equal` 为 True）。这是纯粹的磁盘冗余（死重），既不能用于独立微调、也不提供实质兼容性兜底，详见下方"选型建议"的逐条核对。
 
 vLLM 加载时读到 `tie_word_embeddings=true` 都会重新绑定，官方那份多余的 lm_head 直接被丢弃——所以两者**运行时计算图完全一致**，速度与显存理论无差（1024 轮实测 59.54 vs 59.87 tok/s，0.6% 属噪声级）。
 
@@ -146,11 +146,21 @@ vLLM 加载时读到 `tie_word_embeddings=true` 都会重新绑定，官方那�
 
 ### 选型建议
 
-- **纯推理部署**：两种产物等价，自产版省 37% 磁盘与分发带宽——没有理由选冗余版
-- **要在 lm_head 上做 LoRA/微调**：需要解开绑定（`tie_word_embeddings=False` 后显式复制），官方那种"显式双份"存储才是你要的形态
-- **往小众/老旧 runtime 移植**：官方的显式双份更保险（不依赖框架支持 tie）
+- **纯推理部署**：两种产物运行时等价，自产版省 37% 磁盘与分发带宽——没有理由选冗余版。
 
-一句话：**那 273MB 是"保险费"，不是"性能费"——买到的是兼容性，不是速度。**
+### 官方那份冗余，到底有没有价值？
+
+直接结论：**没有实质收益，是一份"死重"。** 具体逐条核对：
+
+| 常见的"合理化"说法 | 严格核对后的真相 |
+|---|---|
+| "存两份方便在 lm_head 上做 LoRA/微调" | **不成立**。官方 config 仍是 `tie_word_embeddings=true`，加载后框架照旧把 lm_head 绑回 embedding，那份拷贝被丢弃。无论官方版还是自产版，要做 LoRA 都得自己 `tie_word_embeddings=False` + 手动复制——官方那份拷贝帮不上忙 |
+| "存两份对老旧 runtime 更保险" | 理论上成立，但现实中几乎不存在。weight tying 是 2016 年提出、GPT-2 之后标配的技术，HF Transformers / vLLM / llama.cpp / SGLang / TRT-LLM / ONNX 均原生支持，不读 tie 标志的 runtime 已基本绝迹 |
+| "是兼容性保险费" | **不准确**。这份冗余在 `tie=true` 前提下既不保微调、也几乎不保兼容，纯粹让文件多出 273MB |
+
+**正确定性**：官方这份 lm_head 冗余是 AutoGPTQ 一脉工具链的**导出惯性**所致——保存流程遍历所有参数逐个序列化、不特判 tie 关系，于是顺手多写了一份。它属于"可以更好"的工程优化点，**不是 bug**，但也**不是有意的兼容性设计**。
+
+一句话：**那 273MB 既不是保险费也不是性能费，而是一份用不上的死重——去掉它对功能零影响，却能省 37% 体积。**
 
 ## License
 
